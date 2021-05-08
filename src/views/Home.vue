@@ -34,7 +34,8 @@
 
 <script>
 import { BriefcaseIcon, CalendarIcon } from 'vue-feather-icons';
-import { barChartOptions } from '@/utils/barChartOptions';
+import { options } from '@/utils/barChartOptions';
+
 import Topbar from '@/components/Topbar.vue';
 
 export default {
@@ -45,7 +46,7 @@ export default {
   },
   data() {
     return {
-      options: barChartOptions,
+      options,
       series: [
         {
           name: 'Vagas',
@@ -88,6 +89,12 @@ export default {
 
   header {
     margin-bottom: 2.5rem;
+  }
+
+  h3 {
+    @media screen and (max-width: 800px) {
+      font-size: 1.5rem;
+    }
   }
 }
 

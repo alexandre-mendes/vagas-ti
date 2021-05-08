@@ -2,38 +2,44 @@
   "jobs": [
     {
       "id": 1,
+      "image": "https://media-exp1.licdn.com/dms/image/C4D0BAQHtJ2qERs-VvA/company-logo_200_200/0/1618260181864?e=1628726400&v=beta&t=aDeI2FMf-A42xI3GQAXEpK54iiDc2N8k4Z0mBOyXX-s",
       "title": "Analista de Sistema de TI",
       "company": "Universidade de Fortaleza - UNIFOR",
       "address": "Fortaleza, Ceará, Brasil."
     },
     {
       "id": 2,
+      "image": "https://media-exp1.licdn.com/dms/image/C4D0BAQHiTc5hjK-osA/company-logo_200_200/0/1592912867073?e=1628726400&v=beta&t=62yADXdaUHZEs6fjiOx44-VH8S2R6hV2PScgNQFI8Ko",
       "title": "Frontend React",
-      "company": "Universidade de Fortaleza - UNIFOR",
+      "company": "ProgramaThor",
       "address": "Fortaleza, Ceará, Brasil."
     },
     {
       "id": 3,
-      "title": "Desenvolvedor React",
-      "company": "Universidade de Fortaleza - UNIFOR",
+      "image": "https://media-exp1.licdn.com/dms/image/C4D0BAQGpTgcUdW8_kA/company-logo_100_100/0/1612202489863?e=1628726400&v=beta&t=640eN8Vzp90-AYxr1z2bel0Lj8IBi96JlavISzPXbkI",
+      "title": "Técnico de Suporte de Informática",
+      "company": "Ibyte",
       "address": "Fortaleza, Ceará, Brasil."
     },
     {
       "id": 4,
+      "image": "https://media-exp1.licdn.com/dms/image/C4D0BAQHtJ2qERs-VvA/company-logo_200_200/0/1618260181864?e=1628726400&v=beta&t=aDeI2FMf-A42xI3GQAXEpK54iiDc2N8k4Z0mBOyXX-s",
       "title": "Analista de Sistema de TI",
       "company": "Universidade de Fortaleza - UNIFOR",
       "address": "Fortaleza, Ceará, Brasil."
     },
     {
       "id": 5,
+      "image": "https://media-exp1.licdn.com/dms/image/C4D0BAQHiTc5hjK-osA/company-logo_200_200/0/1592912867073?e=1628726400&v=beta&t=62yADXdaUHZEs6fjiOx44-VH8S2R6hV2PScgNQFI8Ko",
       "title": "Frontend React",
-      "company": "Universidade de Fortaleza - UNIFOR",
+      "company": "ProgramaThor",
       "address": "Fortaleza, Ceará, Brasil."
     },
     {
       "id": 6,
-      "title": "Desenvolvedor React",
-      "company": "Universidade de Fortaleza - UNIFOR",
+      "image": "https://media-exp1.licdn.com/dms/image/C4D0BAQGpTgcUdW8_kA/company-logo_100_100/0/1612202489863?e=1628726400&v=beta&t=640eN8Vzp90-AYxr1z2bel0Lj8IBi96JlavISzPXbkI",
+      "title": "Técnico de Suporte de Informática",
+      "company": "Ibyte",
       "address": "Fortaleza, Ceará, Brasil."
     }
   ]

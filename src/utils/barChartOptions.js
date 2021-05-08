@@ -1,4 +1,4 @@
-export const barChartOptions = {
+export const options = {
   plotOptions: {
     bar: {
       borderRadius: 4,
