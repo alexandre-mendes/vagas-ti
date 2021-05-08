@@ -7,17 +7,63 @@
         Acessar vagas
       </b-button>
     </topbar>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <b-container>
+        <header>
+          <h3 class="font-weight-bold">Números de vagas por linguagem</h3>
+          <div class="last-update">
+            <calendar-icon size="18" />
+            <span>Ultima atualização: 28/04/2021 às 09h00</span>
+          </div>
+        </header>
+
+        <b-card>
+          <apexchart
+            type="bar"
+            height="350"
+            :options="options"
+            :series="series"
+          ></apexchart>
+        </b-card>
+      </b-container>
+    </main>
   </div>
 </template>
 
 <script>
-import { BriefcaseIcon } from 'vue-feather-icons';
+import { BriefcaseIcon, CalendarIcon } from 'vue-feather-icons';
+import { barChartOptions } from '@/utils/barChartOptions';
 import Topbar from '@/components/Topbar.vue';
 
 export default {
   components: {
     BriefcaseIcon,
+    CalendarIcon,
     Topbar,
+  },
+  data() {
+    return {
+      options: barChartOptions,
+      series: [
+        {
+          name: 'Vagas',
+          data: [
+            26.259,
+            24.248,
+            13.523,
+            11.757,
+            8.584,
+            8.111,
+            4.971,
+            4.417,
+            4.038,
+            3.243,
+          ],
+        },
+      ],
+    };
   },
   methods: {
     navigateToJobs() {
@@ -33,6 +79,24 @@ export default {
   align-items: center;
 
   & > svg {
+    margin-right: 0.5rem;
+  }
+}
+
+#main-content {
+  padding: 2.5rem 0;
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.last-update {
+  display: flex;
+  align-items: center;
+  color: var(--gray);
+
+  svg {
     margin-right: 0.5rem;
   }
 }
