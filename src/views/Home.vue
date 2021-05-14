@@ -2,9 +2,13 @@
   <div>
     <!-- Header -->
     <topbar>
-      <b-button @click="navigateToJobs" class="button-access" variant="info">
-        <briefcase-icon size="20" />
-        Acessar vagas
+      <b-button
+        @click="navigateToRanking"
+        class="button-access"
+        variant="success"
+      >
+        <award-icon size="20" />
+        Acessar ranking
       </b-button>
     </topbar>
 
@@ -33,14 +37,14 @@
 </template>
 
 <script>
-import { BriefcaseIcon, CalendarIcon } from 'vue-feather-icons';
+import { AwardIcon, CalendarIcon } from 'vue-feather-icons';
 import { options } from '@/utils/barChartOptions';
 
 import Topbar from '@/components/Topbar.vue';
 
 export default {
   components: {
-    BriefcaseIcon,
+    AwardIcon,
     CalendarIcon,
     Topbar,
   },
@@ -67,9 +71,7 @@ export default {
     };
   },
   methods: {
-    navigateToJobs() {
-      this.$router.push({ name: 'Jobs' });
-    },
+    navigateToRanking() {},
   },
 };
 </script>
