@@ -3,7 +3,7 @@
     <!-- Header -->
     <topbar>
       <b-button
-        @click="navigateToRanking"
+        @click="navigateToRanking()"
         class="button-access"
         variant="success"
       >
@@ -12,14 +12,22 @@
       </b-button>
     </topbar>
 
+    <!-- Loading -->
+    <loading v-if="isLoading" />
+
+    <!-- Error -->
+    <b-container class="mt-4" v-else-if="error">
+      <b-alert show variant="danger">{{ error }}</b-alert>
+    </b-container>
+
     <!-- Main Content -->
-    <main id="main-content">
+    <main v-else id="main-content">
       <b-container>
         <header>
           <h3 class="font-weight-bold">Números de vagas por linguagem</h3>
           <div class="last-update">
             <calendar-icon size="18" />
-            <span>Ultima atualização: 28/04/2021 às 09h00</span>
+            <span>{{ updateAt }}</span>
           </div>
         </header>
 
@@ -38,40 +46,94 @@
 
 <script>
 import { AwardIcon, CalendarIcon } from 'vue-feather-icons';
-import { options } from '@/utils/barChartOptions';
-
+import { api } from '../services/api';
 import Topbar from '@/components/Topbar.vue';
+import Loading from '@/components/Loading.vue';
 
 export default {
   components: {
     AwardIcon,
     CalendarIcon,
     Topbar,
+    Loading,
   },
   data() {
     return {
-      options,
-      series: [
-        {
-          name: 'Vagas',
-          data: [
-            26.259,
-            24.248,
-            13.523,
-            11.757,
-            8.584,
-            8.111,
-            4.971,
-            4.417,
-            4.038,
-            3.243,
-          ],
+      options: {
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            horizontal: true,
+          },
         },
-      ],
+        chart: {
+          toolbar: {
+            show: false,
+          },
+        },
+        dataLabels: {
+          enabled: true,
+          style: {
+            fontFamily: 'Poppins',
+            fontSize: 14,
+          },
+        },
+        xaxis: {
+          categories: [],
+          labels: {
+            style: {
+              fontFamily: 'Poppins',
+              fontSize: 14,
+            },
+          },
+        },
+        yaxis: {
+          labels: {
+            style: {
+              fontFamily: 'Poppins',
+              fontSize: 14,
+            },
+          },
+        },
+        tooltip: {
+          style: {
+            fontSize: 14,
+            fontFamily: 'Poppins',
+          },
+        },
+        fill: {
+          colors: ['#17a2b8'],
+        },
+      },
+      series: [],
+      isLoading: true,
+      error: null,
     };
   },
+  computed: {
+    updateAt() {
+      const dateFormat = new Intl.DateTimeFormat('pt-BR').format(new Date());
+      return `Ultima atualização: ${dateFormat}`;
+    },
+  },
   methods: {
-    navigateToRanking() {},
+    navigateToRanking() {
+      this.$router.push({ name: 'ranking' });
+    },
+  },
+  async mounted() {
+    try {
+      const { data } = await api.get('modelo-grafico');
+      const series = data.map(item => item.quantidade);
+      const languages = data.map(item => item.linguagem);
+
+      this.series = [{ name: 'Vagas', data: series }];
+      this.options.xaxis.categories = languages;
+    } catch {
+      this.error = 'Problema ao carregar o gráfico';
+    } finally {
+      this.isLoading = false;
+    }
   },
 };
 </script>

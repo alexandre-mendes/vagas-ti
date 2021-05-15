@@ -2,14 +2,20 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '../views/Home.vue';
+import Ranking from '../views/Ranking.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home,
+  },
+  {
+    path: '/ranking',
+    name: 'ranking',
+    component: Ranking,
   },
 ];
 
