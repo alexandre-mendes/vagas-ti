@@ -8,7 +8,16 @@
       </b-button>
     </topbar>
 
-    <main>
+    <!-- Loading -->
+    <loading v-if="isLoading" />
+
+    <!-- Error -->
+    <b-container class="mt-4" v-else-if="error">
+      <b-alert show variant="danger">{{ error }}</b-alert>
+    </b-container>
+
+    <!-- Main Content -->
+    <main v-else>
       <b-container>
         <b-table striped hover :items="items" :fields="fields">
           <template #cell(posicao)="data">
@@ -24,8 +33,8 @@
           </template>
 
           <template #cell(percentual)="data">
-            <b-badge class="ranking-percentage" variant="info">
-              {{ `${data.item.percentual}% das vagas` }}
+            <b-badge class="ranking-percentage" variant="success">
+              {{ `${data.item.percentual}% de crescimento` }}
             </b-badge>
           </template>
         </b-table>
@@ -36,26 +45,22 @@
 
 <script>
 import { ArrowLeftIcon, AwardIcon } from 'vue-feather-icons';
+import { api } from '@/services/api';
 import Topbar from '@/components/Topbar.vue';
+import Loading from '@/components/Loading.vue';
 
 export default {
   components: {
     ArrowLeftIcon,
     AwardIcon,
     Topbar,
+    Loading,
   },
   data() {
     return {
       colors: ['#ffc107', '#6c757d', '#fd7e14'],
-      items: [
-        { linguagem: 'C', percentual: 80 },
-        { linguagem: 'DELPHI', percentual: 60 },
-        { linguagem: 'PYTHON', percentual: 40 },
-        { linguagem: 'PHP', percentual: 30 },
-        { linguagem: 'RUBY', percentual: 20 },
-        { linguagem: 'JAVA', percentual: 10 },
-        { linguagem: 'JAVASCRIPT', percentual: 5 },
-      ],
+      isLoading: true,
+      items: [],
       fields: [
         { key: 'posicao', label: 'Posição' },
         { key: 'linguagem', label: 'Linguagem' },
@@ -67,6 +72,16 @@ export default {
     handleBack() {
       this.$router.go(-1);
     },
+  },
+  async mounted() {
+    try {
+      const { data } = await api.get('ritmo-crescimento');
+      this.items = data.sort((a, b) => b.percentual - a.percentual);
+    } catch {
+      this.error = 'Problema ao carregar o gráfico';
+    } finally {
+      this.isLoading = false;
+    }
   },
 };
 </script>

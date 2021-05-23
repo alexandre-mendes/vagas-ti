@@ -46,7 +46,7 @@
 
 <script>
 import { AwardIcon, CalendarIcon } from 'vue-feather-icons';
-import { api } from '../services/api';
+import { api } from '@/services/api';
 import Topbar from '@/components/Topbar.vue';
 import Loading from '@/components/Loading.vue';
 
