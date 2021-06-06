@@ -78,7 +78,7 @@ export default {
       const { data } = await api.get('ritmo-crescimento');
       this.items = data.sort((a, b) => b.percentual - a.percentual);
     } catch {
-      this.error = 'Problema ao carregar o gráfico';
+      this.error = 'Problema ao carregar os dados';
     } finally {
       this.isLoading = false;
     }
