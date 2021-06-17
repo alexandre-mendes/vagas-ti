@@ -33,7 +33,10 @@
           </template>
 
           <template #cell(percentual)="data">
-            <b-badge class="ranking-percentage" variant="success">
+            <b-badge
+              class="ranking-percentage"
+              :variant="data.item.percentual >= 0 ? 'success' : 'danger'"
+            >
               {{ `${data.item.percentual}% de crescimento` }}
             </b-badge>
           </template>
