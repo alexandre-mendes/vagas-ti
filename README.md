@@ -1,4 +1,4 @@
-# 💼📊 Vagas TI
+## 💼📊 Vagas TI
 
 Sistema de análise estatística das vagas de emprego na área de programação ofertadas em Fortaleza, Ceará.
 
