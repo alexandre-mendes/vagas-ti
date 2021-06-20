@@ -54,3 +54,7 @@ yarn build # or npm run build
     </td>
   </tr>
 </table>
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
