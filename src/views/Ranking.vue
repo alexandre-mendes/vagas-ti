@@ -64,6 +64,7 @@ export default {
       colors: ['#ffc107', '#6c757d', '#fd7e14'],
       isLoading: true,
       items: [],
+      error: null,
       fields: [
         { key: 'posicao', label: 'Posição' },
         { key: 'linguagem', label: 'Linguagem' },
@@ -79,7 +80,17 @@ export default {
   async mounted() {
     try {
       const { data } = await api.get('ritmo-crescimento');
-      this.items = data.sort((a, b) => b.percentual - a.percentual);
+      this.items = data
+        .map(item => {
+          if (item.linguagem === 'CSHARP') {
+            return { ...item, linguagem: 'C#' };
+          } else if (item.linguagem === 'CPLUSPLUS') {
+            return { ...item, linguagem: 'C++' };
+          } else {
+            return item;
+          }
+        })
+        .sort((a, b) => b.percentual - a.percentual);
     } catch {
       this.error = 'Problema ao carregar os dados';
     } finally {
