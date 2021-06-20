@@ -23,11 +23,17 @@
     <!-- Main Content -->
     <main v-else id="main-content">
       <b-container>
-        <header>
+        <header class="chart-info">
           <h3 class="font-weight-bold">Números de vagas por linguagem</h3>
-          <div class="last-update">
+
+          <div>
             <calendar-icon size="18" />
             <span>{{ updateAt }}</span>
+          </div>
+
+          <div>
+            <map-pin-icon size="18" />
+            <span>Fortaleza - CE</span>
           </div>
         </header>
 
@@ -45,7 +51,7 @@
 </template>
 
 <script>
-import { AwardIcon, CalendarIcon } from 'vue-feather-icons';
+import { AwardIcon, CalendarIcon, MapPinIcon } from 'vue-feather-icons';
 import { api } from '@/services/api';
 import Topbar from '@/components/Topbar.vue';
 import Loading from '@/components/Loading.vue';
@@ -54,6 +60,7 @@ export default {
   components: {
     AwardIcon,
     CalendarIcon,
+    MapPinIcon,
     Topbar,
     Loading,
   },
@@ -125,7 +132,16 @@ export default {
     try {
       const { data } = await api.get('modelo-grafico');
       const series = data.map(item => item.quantidade);
-      const languages = data.map(item => item.linguagem);
+
+      const languages = data.map(item => {
+        if (item.linguagem === 'CSHARP') {
+          return 'C#';
+        } else if (item.linguagem === 'CPLUSPLUS') {
+          return 'C++';
+        } else {
+          return item.linguagem;
+        }
+      });
 
       this.series = [{ name: 'Vagas', data: series }];
       this.options.xaxis.categories = languages;
@@ -162,13 +178,15 @@ export default {
   }
 }
 
-.last-update {
-  display: flex;
-  align-items: center;
-  color: var(--gray);
+.chart-info {
+  & > div {
+    display: flex;
+    align-items: center;
+    color: var(--gray);
 
-  svg {
-    margin-right: 0.5rem;
+    svg {
+      margin-right: 0.5rem;
+    }
   }
 }
 </style>
