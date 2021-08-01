@@ -39,7 +39,7 @@ yarn build # or npm run build
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/mendes-alexandre">
+      <a href="https://github.com/alexandre-mendes">
         <img src="https://avatars.githubusercontent.com/u/59848642?v=4" width="100px;" alt=""/>
         <br />
         <sub><b>Alexandre Mendes</b></sub>
